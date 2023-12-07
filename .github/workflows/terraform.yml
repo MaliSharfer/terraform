@@ -6,7 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
-
+env:
+  TF_VAR_rg_name: "rg-tf-state-mk2"
+  TF_VAR_subscription_id: ${{secrets.SUBSCRIPTION_ID}}
+  
 jobs:
   job1:
     runs-on: ubuntu-latest
