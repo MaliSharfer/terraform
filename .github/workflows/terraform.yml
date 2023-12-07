@@ -21,7 +21,7 @@ jobs:
       
       - name : az login
         id : az-login
-        run : az login 
+        run : az login --use-device-code
 
       - name: Terraform Init
         id: init
