@@ -15,14 +15,14 @@ jobs:
 
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
+      
+      - name : az login
+        id : az-login
+        run : az login 
 
       - name: Terraform Init
         id: init
         run: terraform init -input=false 
-
-      - name : az login
-        id : az-login
-        run : az login 
  
       - name: Terraform Plan
         id: plan
