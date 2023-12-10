@@ -20,7 +20,7 @@ provider "azurerm" {
     }
   }
 
-  subscription_id = var.subscription_id
+  # subscription_id = var.subscription_id
 }
 
 resource "azurerm_resource_group" "state_resource_group" {
