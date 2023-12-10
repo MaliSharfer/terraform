@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "NetworkWatcherRG"
-    storage_account_name = "myfirsttrail"
+    resource_group_name  = "rg-automation-managment"
+    storage_account_name = "managmentautomation"
     container_name       = "terraformstatedemo"
     key                  = "terraform.tfstate"
   }
