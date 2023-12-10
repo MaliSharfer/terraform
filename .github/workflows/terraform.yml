@@ -6,31 +6,36 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  TF_VAR_rg_name: "rg-tf-state-mk2"
+  TF_VAR_subscription_id: ${{secrets.SUBSCRIPTION_ID}}
+  
+
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name : az login
-        id : az-login
-        run : az login 
+      # - name : az login
+      #   id : az-login
+      #   run : az login 
 
-      # - name: HashiCorp - Setup Terraform
-      #   uses: hashicorp/setup-terraform@v2.0.0
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.0
       
 
-      # - name: Terraform Init
-      #   id: init
-      #   run: terraform init -input=false 
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false 
  
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -out=tfplan -input=false 
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan -input=false 
 
-      # - name: Terraform Apply
-      #   id: apply
-      #   run: terraform apply -input=false -auto-approve tfplan
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -input=false -auto-approve tfplan
 
       
       
