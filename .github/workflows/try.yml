@@ -1,0 +1,17 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name : az login
+        id : az-login
+        run : az login 
