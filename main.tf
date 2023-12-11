@@ -29,17 +29,17 @@ resource "azurerm_resource_group" "state_resource_group" {
   location = "West Europe"
 }
 
-resource "azurerm_storage_account" "storage_account" {
-  name                     = var.st_name
-  resource_group_name      = azurerm_resource_group.state_resource_group.name
-  location                 = azurerm_resource_group.state_resource_group.location
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
+# resource "azurerm_storage_account" "storage_account" {
+#   name                     = var.st_name
+#   resource_group_name      = azurerm_resource_group.state_resource_group.name
+#   location                 = azurerm_resource_group.state_resource_group.location
+#   account_tier             = "Standard"
+#   account_replication_type = "GRS"
 
-  tags = {
-    environment = "staging"
-  }
-}
+#   tags = {
+#     environment = "staging"
+#   }
+# }
 
 
 
