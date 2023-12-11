@@ -6,6 +6,7 @@ terraform {
     }
   }
   backend "azurerm" {
+    subscription_id = "4b790616-7e75-4a6a-a4e0-52db256f6ad9"
     resource_group_name  = "rg-automation-managment"
     storage_account_name = "managmentautomation"
     container_name       = "terraformstatedemo"
