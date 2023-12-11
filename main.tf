@@ -22,7 +22,7 @@ provider "azurerm" {
     }
   }
 
-  # subscription_id = "4b790616-7e75-4a6a-a4e0-52db256f6ad9"
+  subscription_id = var.subscription_id
 }
 
 resource "azurerm_resource_group" "state_resource_group" {
