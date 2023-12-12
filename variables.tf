@@ -9,5 +9,5 @@ variable rg_name {
 
 variable st_name {
   type        = string
-  default     = "sttfstatemk2"
+  default     = "sttfstatemk3"
 }
