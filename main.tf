@@ -44,6 +44,8 @@ data "azurerm_storage_account" "vnet_storage_account"{
 #   }
 # }
 
+
+
 resource "azurerm_virtual_network" "virtual_network" {
   name                = var.vnet_name
   location            = data.azurerm_resource_group.vnet_resource_group.location
