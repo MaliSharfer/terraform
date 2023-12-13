@@ -44,8 +44,6 @@ data "azurerm_storage_account" "vnet_storage_account"{
 #   }
 # }
 
-
-
 resource "azurerm_virtual_network" "virtual_network" {
   name                = var.vnet_name
   location            = data.azurerm_resource_group.vnet_resource_group.location
@@ -61,8 +59,6 @@ resource "azurerm_subnet" "vnet_subnet" {
   address_prefixes     = var.subnet_address_prefix
 }
 
-
-
 resource "azurerm_app_service_plan" "app_service_plan" {
   name                = each.value
   location            = data.azurerm_resource_group.vnet_resource_group.location
@@ -76,17 +72,18 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   for_each = toset(var.app_service_plan_name)
 }
 
+
 resource "azurerm_function_app" "function_app" {
-  name                      = var.function_app_name[count.index+1]
+  name                      = var.function_app_name[count.index]
   location                  = data.azurerm_storage_account.vnet_storage_account.location
   resource_group_name       = data.azurerm_storage_account.vnet_storage_account.resource_group_name
-  app_service_plan_id       = azurerm_app_service_plan.app_service_plan[var.app_service_plan_name[count.index+1]].id
+  app_service_plan_id       = azurerm_app_service_plan.app_service_plan[var.app_service_plan_name[count.index]].id
   storage_account_name      = data.azurerm_storage_account.vnet_storage_account.name
   storage_account_access_key =data.azurerm_storage_account.vnet_storage_account.primary_access_key
   os_type                   = "linux"
   version                   = "~4"
 
-  app_settings = {for key, value in var.function_app_settings[count.index+1]: key =>value}
+  app_settings = {for key, value in var.function_app_settings[count.index]: key =>value}
   site_config {
     linux_fx_version = "python|3.11"
   }
