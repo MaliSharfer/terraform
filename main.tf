@@ -17,3 +17,9 @@ resource "azurerm_resource_group" "state_resource_group" {
 
 
 
+
+
+
+
+
+
