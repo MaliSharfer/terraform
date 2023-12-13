@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  TF_VAR_rg_name: "rg-tf-state-mk2"
+  TF_VAR_rg_name: "NetworkWatcherRG"
   TF_VAR_subscription_id: ${{secrets.SUBSCRIPTION_ID}}
   ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
   ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
