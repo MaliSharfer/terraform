@@ -92,7 +92,7 @@ resource "azurerm_function_app" "function_app" {
     type = "SystemAssigned"
   }
   
-  count = length(azurerm_app_service_plan.app_service_plan)
+  count = length(var.app_service_plan_name)
 }
 
 resource "azurerm_logic_app_workflow" "logic_app_workflow" {

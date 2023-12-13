@@ -30,16 +30,14 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init -input=false 
+ 
       - name: Terraform Plan
         id: plan
-        run: terraform show
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -out=tfplan -input=false 
+        run: terraform plan -out=tfplan -input=false 
 
-      # - name: Terraform Apply
-      #   id: apply
-      #   run: terraform apply -input=false -auto-approve tfplan
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -input=false -auto-approve tfplan
 
       
       
