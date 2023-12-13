@@ -53,7 +53,7 @@ resource "azurerm_function_app" "function_app" {
   name                      = "func-subscriptions1"
   location                  = data.azurerm_storage_account.vnet_storage_account.location
   resource_group_name       = data.azurerm_storage_account.vnet_storage_account.resource_group_name
-  app_service_plan_id       = azurerm_service_plan.service_plan.id
+  app_service_plan_id       = azurerm_app_service_plan.app_service_plan.id
   storage_account_name      = data.azurerm_storage_account.vnet_storage_account.name
   storage_account_access_key =data.azurerm_storage_account.vnet_storage_account.primary_access_key
   os_type                   = "linux"
