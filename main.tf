@@ -61,8 +61,8 @@ resource "azurerm_subnet" "vnet_subnet" {
 
 resource "azurerm_app_service_plan" "app_service_plan" {
   name                = each.value
-  location            = data.azurerm_resource_group.vnet_resource_group.location
-  resource_group_name = data.azurerm_resource_group.vnet_resource_group.name
+  location            = data.azurerm_storage_account.vnet_storage_account.location
+  resource_group_name = data.azurerm_storage_account.vnet_storage_account.resource_group_name
   kind                = "Linux"
   reserved            = true
   sku {
