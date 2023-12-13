@@ -108,7 +108,6 @@ variable function_app_settings {
   type        = list
 }
 
-
 variable logic_app_workflow_name {
   type        = list(string)
   default =["logic-app-storage-management","logic-app-subscription-management"]
@@ -149,5 +148,7 @@ variable key_vault_secret_name {
   type        = string
   default     = "CONNECTION-STRING"
 }
+
+
 
 
