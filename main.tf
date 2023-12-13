@@ -28,7 +28,7 @@ data "azurerm_storage_account" "vnet_storage_account"{
 
 
 resource "azurerm_service_plan" "service_plan" {
-  name                = "app-subscriptions1"
+  name                = "app-subscriptions11"
   resource_group_name = data.azurerm_resource_group.vnet_resource_group.name
   location            = data.azurerm_resource_group.vnet_resource_group.location
   os_type             = "Linux"
