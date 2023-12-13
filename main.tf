@@ -41,17 +41,17 @@ resource "azurerm_app_service_plan" "example" {
 
 resource "azurerm_function_app" "example" {
   name                      = "mali-function-newnew11"
-  location                  = data.azurerm_storage_account.myfirsttrail.location
-  resource_group_name       = data.azurerm_storage_account.myfirsttrail.resource_group_name
+  location                  = data.azurerm_storage_account.vnet_storage_account.location
+  resource_group_name       = data.azurerm_storage_account.vnet_storage_account.resource_group_name
   app_service_plan_id       = azurerm_app_service_plan.example.id
-  storage_account_name      = data.azurerm_storage_account.myfirsttrail.name
-  storage_account_access_key = data.azurerm_storage_account.myfirsttrail.primary_access_key
+  storage_account_name      = data.azurerm_storage_account.vnet_storage_account.name
+  storage_account_access_key = data.azurerm_storage_account.vnet_storage_account.primary_access_key
   os_type                   = "linux"
   version                   = "~4"
 
   app_settings = {
   "FUNCTIONS_WORKER_RUNTIME" = "python"
-  "AzureWebJobsStorage"      = data.azurerm_storage_account.myfirsttrail.primary_connection_string
+  "AzureWebJobsStorage"      = data.azurerm_storage_account.vnet_storage_account.primary_connection_string
   
   }
 
