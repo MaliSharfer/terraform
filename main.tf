@@ -26,23 +26,23 @@ data "azurerm_storage_account" "vnet_storage_account"{
   resource_group_name = data.azurerm_resource_group.vnet_resource_group.name
 }
 
-resource "azurerm_network_security_group" "network_security_group" {
-  name                = var.nsg_name
-  location            = data.azurerm_resource_group.vnet_resource_group.location
-  resource_group_name = data.azurerm_resource_group.vnet_resource_group.name
+# resource "azurerm_network_security_group" "network_security_group" {
+#   name                = var.nsg_name
+#   location            = data.azurerm_resource_group.vnet_resource_group.location
+#   resource_group_name = data.azurerm_resource_group.vnet_resource_group.name
 
-  security_rule {
-    name                       = var.security_rule_name
-    priority                   = var.security_rule_priority
-    direction                  = var.security_rule_direction
-    access                     = var.security_rule_access
-    protocol                   = var.security_rule_protocol
-    source_port_range          = var.security_rule_source_port_range
-    destination_port_range     = var.security_rule_destination_port_range
-    source_address_prefix      = var.security_rule_source_address_prefix
-    destination_address_prefix = var.security_rule_destination_address_prefix
-  }
-}
+#   security_rule {
+#     name                       = var.security_rule_name
+#     priority                   = var.security_rule_priority
+#     direction                  = var.security_rule_direction
+#     access                     = var.security_rule_access
+#     protocol                   = var.security_rule_protocol
+#     source_port_range          = var.security_rule_source_port_range
+#     destination_port_range     = var.security_rule_destination_port_range
+#     source_address_prefix      = var.security_rule_source_address_prefix
+#     destination_address_prefix = var.security_rule_destination_address_prefix
+#   }
+# }
 
 resource "azurerm_virtual_network" "virtual_network" {
   name                = var.vnet_name
