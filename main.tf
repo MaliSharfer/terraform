@@ -30,7 +30,7 @@ data "azurerm_storage_account" "vnet_storage_account"{
 resource "azurerm_app_service_plan" "example" {
   name                = "app-service-plan-newnew21"
   location            = "East US"
-  resource_group_name = data.azurerm_storage_account.myfirsttrail.resource_group_name
+  resource_group_name = data.azurerm_storage_account.vnet_storage_account.resource_group_name
   kind                = "Linux"
   reserved            = true
   sku {
