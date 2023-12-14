@@ -63,7 +63,7 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   name                = each.value
   location            = data.azurerm_storage_account.vnet_storage_account.location
   resource_group_name = data.azurerm_storage_account.vnet_storage_account.resource_group_name
-  kind                = "functionapp"
+  kind                = "FunctionApp"
   reserved            = true
   sku {
     tier = "Dynamic"
