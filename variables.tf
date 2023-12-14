@@ -116,7 +116,7 @@ variable logic_app_workflow_name {
 
 variable key_vault_name {
   type        = string
-  default = "kv-manageautomations"
+  default = "kv-manageautomations1"
 }
 
 variable key_vault_sku_name {
