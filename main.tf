@@ -113,6 +113,8 @@ data "azurerm_key_vault" "key_vault" {
 data "azurerm_subscription" "primary" {
 }
 
+
+
 # resource "azurerm_role_assignment" "subscription_access" {
 #   scope                = data.azurerm_subscription.primary.id
 #   role_definition_name = "Reader"
