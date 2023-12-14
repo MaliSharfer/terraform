@@ -31,15 +31,15 @@ jobs:
         id: init
         run: terraform init -input=false 
  
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -out=tfplan -input=false 
+      # - name: Terraform Plan
+      #   id: plan
+      #   run: terraform plan -out=tfplan -input=false 
 
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -input=false -auto-approve tfplan
-
-      # - name: Terraform Destroy
+      # - name: Terraform Apply
       #   id: apply
-      #   run: terraform destroy -auto-approve
+      #   run: terraform apply -input=false -auto-approve tfplan
+
+      - name: Terraform show
+        id: show
+        run: terraform show 
       
