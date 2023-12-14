@@ -115,15 +115,15 @@ data "azurerm_subscription" "primary" {
 
 
 
-# resource "azurerm_role_assignment" "subscription_access" {
-#   scope                = data.azurerm_subscription.primary.id
-#   role_definition_name = "Reader"
-#   principal_id         = azurerm_function_app.function_app[0].identity[0].principal_id 
-# }
+resource "azurerm_role_assignment" "subscription_access" {
+  scope                = data.azurerm_subscription.primary.id
+  role_definition_name = "Reader"
+  principal_id         = azurerm_function_app.function_app[0].identity[0].principal_id 
+}
 
-# resource "azurerm_role_assignment" "key_vault_access" {
-#   scope                = data.azurerm_key_vault.key_vault.id 
-#   role_definition_name = "Key Vault Administrator"  
-#   principal_id         = azurerm_function_app.function_app[0].identity[0].principal_id
-# }
+resource "azurerm_role_assignment" "key_vault_access" {
+  scope                = data.azurerm_key_vault.key_vault.id 
+  role_definition_name = "Key Vault Administrator"  
+  principal_id         = azurerm_function_app.function_app[0].identity[0].principal_id
+}
 
