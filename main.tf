@@ -115,6 +115,9 @@ data "azurerm_subscription" "primary" {
 
 
 
+
+
+
 # resource "azurerm_role_assignment" "subscription_access" {
 #   scope                = data.azurerm_subscription.primary.id
 #   role_definition_name = "Reader"
