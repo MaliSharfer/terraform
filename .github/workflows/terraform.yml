@@ -35,6 +35,10 @@ jobs:
         id: plan
         run: terraform plan -out=tfplan -input=false 
 
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -input=false -auto-approve tfplan
+      # - name: Terraform Apply
+      #   id: apply
+      #   run: terraform apply -input=false -auto-approve tfplan
+
+      - name: Terraform destroy
+        id: destroy
+        run: terraform destroy -auto-approve 
