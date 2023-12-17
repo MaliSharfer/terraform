@@ -25,8 +25,8 @@ jobs:
 
       - name: 📂 Change Directory to Terraform Files
         run: |
-          cd terraformfiles  # Adjust the path accordingly
-          ls -la  # List files in the directory for verification
+          cd terrafromfiles  
+          ls -la  
 
       - name : 🔑 az login
         id : az-login
