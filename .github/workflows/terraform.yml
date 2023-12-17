@@ -25,7 +25,7 @@ jobs:
 
       - name: 📂 Change Directory to Terraform Files
         run: |
-          cd terrafromfiles  
+          cd terraformsfiles  
           ls -la  
 
       - name : 🔑 az login
@@ -35,17 +35,17 @@ jobs:
       - name: 🏗️ Terraform Init
         id: init
         run: |
-          cd terraformfiles  # Ensure to change to the correct directory
+          cd terraformsfiles  
           terraform init -input=false
 
       - name: 📋 Terraform Plan
         id: plan
         run: |
-          cd terraformfiles  # Ensure to change to the correct directory
+          cd terraformsfiles 
           terraform plan -out=tfplan -input=false
 
       - name: ✅ Terraform Apply
         id: apply
         run: |
-          cd terraformfiles  # Ensure to change to the correct directory
+          cd terraformsfiles  
           terraform apply -input=false -auto-approve tfplan
