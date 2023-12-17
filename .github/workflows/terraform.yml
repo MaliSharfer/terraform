@@ -26,6 +26,9 @@ jobs:
       - name: 📂 Change Directory to Terraform Files
         run: cd terrafromfiles  
 
+      - name: 📂 ls
+        run: ls 
+         
       - name : 🔑 az login
         id : az-login
         run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
