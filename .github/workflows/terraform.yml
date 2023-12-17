@@ -24,7 +24,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2.0.0
       
       - name: 📂 Change Directory to Terraform Files
-        run: cd terraform/terrafromfiles  
+        run: cd terrafromfiles  
 
       - name : 🔑 az login
         id : az-login
