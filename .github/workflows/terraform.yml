@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: '🌍 Terraform Automation'
 
 on:
   push:
@@ -20,25 +20,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: HashiCorp - Setup Terraform
+      - name: 🧩 HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
       
-      - name : az login
+      - name : 🔑 az login
         id : az-login
         run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
-      - name: Terraform Init
+      - name: 🏗️ Terraform Init
         id: init
         run: terraform init -input=false 
  
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -out=tfplan -input=false 
+      - name: 📋 Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan -input=false 
 
-      # - name: Terraform Apply
-      #   id: apply
-      #   run: terraform apply -input=false -auto-approve tfplan
-
-      - name: Terraform destroy
-        id: destroy
-        run: terraform destroy -auto-approve 
+      - name: ✅ Terraform Apply
+        id: apply
+        run: terraform apply -input=false -auto-approve tfplan
