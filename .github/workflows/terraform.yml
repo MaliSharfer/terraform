@@ -22,25 +22,30 @@ jobs:
 
       - name: 🧩 HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
-      
-      - name: 📂 Change Directory to Terraform Files
-        run: cd terrafromfiles  
 
-      - name: 📂 ls
-        run: ls 
-         
+      - name: 📂 Change Directory to Terraform Files
+        run: |
+          cd Terraform/terraformfiles  # Adjust the path accordingly
+          ls -la  # List files in the directory for verification
+
       - name : 🔑 az login
         id : az-login
         run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
-      
+
       - name: 🏗️ Terraform Init
         id: init
-        run: terraform init -input=false 
- 
+        run: |
+          cd Terraform/terraformfiles  # Ensure to change to the correct directory
+          terraform init -input=false
+
       - name: 📋 Terraform Plan
         id: plan
-        run: terraform plan -out=tfplan -input=false 
+        run: |
+          cd Terraform/terraformfiles  # Ensure to change to the correct directory
+          terraform plan -out=tfplan -input=false
 
       - name: ✅ Terraform Apply
         id: apply
-        run: terraform apply -input=false -auto-approve tfplan
+        run: |
+          cd Terraform/terraformfiles  # Ensure to change to the correct directory
+          terraform apply -input=false -auto-approve tfplan
