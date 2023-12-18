@@ -23,10 +23,10 @@ jobs:
       - name: 🧩 HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
 
-      - name: 📂 Change Directory to Terraform Files
-        run: |
-          cd terraformsfiles  
-          ls -la  
+      # - name: 📂 Change Directory to Terraform Files
+      #   run: |
+      #     cd terraformsfiles  
+      #     ls -la  
 
       - name : 🔑 az login
         id : az-login
