@@ -9,10 +9,6 @@ on:
 env:
   TF_VAR_rg_name: "NetworkWatcherRG"
   TF_VAR_subscription_id: ${{secrets.SUBSCRIPTION_ID}}
-  ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-  ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-  ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-  ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
 
 jobs:
   job1:
@@ -23,22 +19,16 @@ jobs:
       - name: 🧩 HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
 
-      - name: 🔌 Login to Azure
+      - name: 🔑 Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}     
 
-
-
-      # - name : 🔑 az login
-      #   id : az-login
-      #   run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
-
-      # - name: 🏗️ Terraform Init
-      #   id: init
-      #   run: |
-      #     cd terraformsfiles  
-      #     terraform init -input=false
+      - name: 🏗️ Terraform Init
+        id: init
+        run: |
+          cd terraformsfiles  
+          terraform init -input=false
 
       # - name: 📋 Terraform Plan
       #   id: plan
