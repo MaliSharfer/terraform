@@ -24,7 +24,7 @@ jobs:
       - name: 🏗️ Terraform Init
         id: init
         run: |
-          cd terraformsfiles  
+          cd terrafromfiles  
           terraform init -input=false
  
 
