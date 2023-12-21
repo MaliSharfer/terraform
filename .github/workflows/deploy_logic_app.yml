@@ -3,6 +3,7 @@ name: "deploy logic app subscriptions"
 # on:
 #   push:
 #     branches: ["main"]
+
 on:
   workflow_dispatch:
 
