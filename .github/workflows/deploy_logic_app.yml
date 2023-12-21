@@ -1,0 +1,25 @@
+name: "deploy logic app subscriptions"
+
+on:
+  push:
+    branches: ["feature/logic_app_subscriptions"]
+
+
+jobs:
+  deploy-template-subscriptions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
+          enable-AzPSSession: true 
+
+      - name: deploy template
+        id: deploy
+        uses: azure/powershell@v1
+        with: 
+          inlineScript: |
+            az deployment group create -g NetworkWatcherRG --template-file ./subscriptions-automation/logic_app/template.json --parameters workflows_logic_app_subscription_management_name="logic-app-subscription-management" sites_func_subscription_management_02_externalid="/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-chaya-subscription-management/providers/Microsoft.Web/sites/func-subscription-management-02" location="eastus" frequency="Day" interval=1
+          azPSVersion: latest
