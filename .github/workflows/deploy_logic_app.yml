@@ -23,5 +23,5 @@ jobs:
         uses: azure/powershell@v1
         with: 
           inlineScript: |
-            az deployment group create -g NetworkWatcherRG --template-file ./subscriptions-automation/logic_app/template.json --parameters workflows_logic_app_subscription_management_name="logic-app-subscription-management" sites_func_subscription_management_02_externalid="/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-chaya-subscription-management/providers/Microsoft.Web/sites/func-subscription-management-02" location="eastus" frequency="Day" interval=1
+            az deployment group create -g rg-manage-subscrioptions --template-file ./subscriptions-automation/logic_app/template.json --parameters workflows_logic_app_subscription_management_name="logic-app-subscription-management" sites_func_subscription_management_02_externalid="/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-manage-subscrioptions/providers/Microsoft.Web/sites/func-subscriptions-automation" location="westeurope" frequency="Day" interval=1
           azPSVersion: latest
