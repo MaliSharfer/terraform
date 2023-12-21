@@ -1,10 +1,13 @@
 name: 🚀 Build and deploy container app to Azure Function App 
 
-on:
-  push:
-    branches:
-      - feature/azure-deployment
+# on:
+#   push:
+#     branches:
+#       - main
 
+on:
+  workflow_dispatch:
+  
 jobs:
  build-and-deploy:
     runs-on: 'ubuntu-latest'

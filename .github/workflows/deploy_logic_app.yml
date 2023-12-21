@@ -1,9 +1,10 @@
 name: "deploy logic app subscriptions"
 
+# on:
+#   push:
+#     branches: ["main"]
 on:
-  push:
-    branches: ["feature/logic_app_subscriptions"]
-
+  workflow_dispatch:
 
 jobs:
   deploy-template-subscriptions:

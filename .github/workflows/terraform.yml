@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 
-env:
+env:   
   TF_VAR_subscription_id: ${{secrets.SUBSCRIPTION_ID}}
   TF_VAR_DOCKER_REGISTRY_SERVER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
   TF_VAR_DOCKER_REGISTRY_SERVER_USERNAME: ${{ github.actor }}
