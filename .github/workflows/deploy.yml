@@ -35,11 +35,11 @@ jobs:
       if: env.DIRECTORY == matrix.directory
 
     - name: 🔄 downcase REPO
-          uses: ASzc/change-string-case-action@v1
-          id: downcase
-          with:
-              string: ${{ github.repository }}
-          if: env.DIRECTORY == matrix.directory
+      uses: ASzc/change-string-case-action@v1
+      id: downcase
+      with:
+          string: ${{ github.repository }}
+      if: env.DIRECTORY == matrix.directory
 
     - name: ♻️ Set correct environment
       run: |
