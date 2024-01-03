@@ -1,9 +1,7 @@
 name: 🚀 Build and deploy container app to Azure Function App 
 
 on:
-  push:
-    branches:
-      - feature/azure-deployment
+  workflow_dispatch:
 
 jobs:
  build-and-deploy:
@@ -59,11 +57,14 @@ jobs:
         file: ./${{ matrix.directory }}/Dockerfile
       if: env.DIRECTORY == matrix.directory
 
-    - name: 🔑 Login to Azure
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-      if: env.DIRECTORY == matrix.directory
+    # - name: 🔑 Login to Azure
+    #   uses: azure/login@v1
+    #   with:
+    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+    #   if: env.DIRECTORY == matrix.directory
+     - name : 🔑 az login
+        id : az-login
+        run : az login --use-device-code
 
     - name: 🛠️ Check and copy necessary files
       run: |
