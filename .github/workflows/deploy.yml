@@ -63,9 +63,9 @@ jobs:
     #   with:
     #     creds: ${{ secrets.AZURE_CREDENTIALS }}
     #   if: env.DIRECTORY == matrix.directory
-     - name : 🔑 az login
-        id : az-login
-        run : az login --use-device-code
+    - name : 🔑 az login
+       id : az-login
+       run : az login --use-device-code
 
     - name: 🛠️ Check and copy necessary files
       run: |
