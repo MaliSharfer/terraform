@@ -46,15 +46,15 @@ jobs:
     - name: 🛠️ Check and copy necessary files
       run: |
         DIRECTORY=${{ env.DIRECTORY }}
-        REQUIRED_FILES=(".funcignore",".gitignore","host.json","local.settings.json","requirements.txt") 
+        REQUIRED_FILES=(".funcignore",".gitignore","host.json","local.settings.json","requirements.txt","Dockerfile") 
         
         for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "${DIRECTORY}/src/${file}" ]; then
-            echo "${file} not found in ${DIRECTORY}/src, copying from root"
-            cp "${file}" "${DIRECTORY}/src/"
+          if [ ! -f "${DIRECTORY}/${file}" ]; then
+            echo "${file} not found in ${DIRECTORY}, copying from root"
+            cp "${file}" "${DIRECTORY}/"
           fi
         done
-        
+
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
