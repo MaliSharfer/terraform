@@ -45,7 +45,7 @@ jobs:
  
     - name: 🛠️ Check and copy necessary files
       run: |
-        DIRECTORY=${{ env.DIRECTORY }}
+        DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore",".gitignore","host.json","local.settings.json","requirements.txt","Dockerfile") 
         
         for file in "${REQUIRED_FILES[@]}"; do
