@@ -43,8 +43,6 @@ jobs:
 
     - name: ♻️ Set correct environment
       run: |
-        TAG=${{ steps.get_release.outputs.tag_name }}
-        echo "TAG=$TAG" >> "$GITHUB_ENV"
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
       if: env.DIRECTORY == matrix.directory
@@ -64,8 +62,8 @@ jobs:
     #     creds: ${{ secrets.AZURE_CREDENTIALS }}
     #   if: env.DIRECTORY == matrix.directory
     - name : 🔑 az login
-       id : az-login
-       run : az login --use-device-code
+      id : az-login
+      run : az login --use-device-code
 
     - name: 🛠️ Check and copy necessary files
       run: |
@@ -78,7 +76,7 @@ jobs:
             cp "${file}" "${DIRECTORY}/src/"
           fi
         done
-      if: env.DIRECTORY == matrix.director  
+      if: env.DIRECTORY == matrix.directory  
  
     - name: 🚀 Deploy to Azure Functions
       id: deploy-to-functions
