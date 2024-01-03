@@ -50,6 +50,7 @@ jobs:
         push: true
         tags: ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:${{ github.sha }}
         file: ./Dockerfile
+
     # - name: 🔑 Login to Azure
     #   uses: azure/login@v1
     #   with:
