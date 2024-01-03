@@ -61,6 +61,7 @@ jobs:
     #   with:
     #     creds: ${{ secrets.AZURE_CREDENTIALS }}
     #   if: env.DIRECTORY == matrix.directory
+    
     - name : 🔑 az login
       id : az-login
       run : az login --use-device-code
