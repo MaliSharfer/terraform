@@ -1,17 +1,5 @@
-azure-cli
-azure-identity
-azure-mgmt-monitor
-azure-mgmt-consumption
-azure-mgmt-storage
-azure-mgmt-resource 
-azure-storage-blob
-pytest
-pytest_mock
-black
-python-dateutil
-pytest-cov
-python-dotenv
-pytz
+# DO NOT include azure-functions-worker in this file
+# The Python Worker is managed by Azure Functions platform
+# Manually managing azure-functions-worker may cause unexpected issues
+
 azure-functions
-requests
-openpyxl
