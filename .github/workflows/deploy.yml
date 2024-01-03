@@ -43,15 +43,36 @@ jobs:
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
  
+    # - name: 🛠️ Check and copy necessary files
+    #   run: |
+    #     DIRECTORY=${{ matrix.directory }}
+    #     REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile") 
+        
+    #     for file in "${REQUIRED_FILES[@]}"; do
+    #       if [ ! -f "${DIRECTORY}/${file}" ]; then
+    #         echo "${file} not found in ${DIRECTORY}, copying from root"
+    #         cp "${file}" "${DIRECTORY}/"
+    #       fi
+    #     done
     - name: 🛠️ Check and copy necessary files
       run: |
         DIRECTORY=${{ matrix.directory }}
-        REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile") 
-        
+        REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
+
+        # Change directory to the root of the repository
+        cd $GITHUB_WORKSPACE
+
+        # Loop through each required file
         for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "${DIRECTORY}/${file}" ]; then
-            echo "${file} not found in ${DIRECTORY}, copying from root"
-            cp "${file}" "${DIRECTORY}/"
+          # Check if the file exists in the root directory
+          if [ ! -f "${file}" ]; then
+            echo "${file} not found in the root directory, cannot copy"
+          else
+            # Copy the file to the specified directory if missing
+            if [ ! -f "${DIRECTORY}/${file}" ]; then
+              echo "${file} not found in ${DIRECTORY}, copying from root"
+              cp "${file}" "${DIRECTORY}/"
+            fi
           fi
         done
 
