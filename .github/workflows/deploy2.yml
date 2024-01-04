@@ -57,21 +57,21 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: 🧰 Check and copy necessary files
-      run: |
-        DIRECTORY=${{ matrix.directory }}
-        REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-        cd $GITHUB_WORKSPACE
-        for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "${file}" ]; then
-            echo "${file} not found in the root directory, cannot copy"
-          else
-            if [ ! -f "${DIRECTORY}/${file}" ]; then
-              echo "${file} not found in ${DIRECTORY}, copying from root"
-              cp "${file}" "${DIRECTORY}/"
-            fi
-          fi
-        done
+    # - name: 🧰 Check and copy necessary files
+    #   run: |
+    #     DIRECTORY=${{ matrix.directory }}
+    #     REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
+    #     cd $GITHUB_WORKSPACE
+    #     for file in "${REQUIRED_FILES[@]}"; do
+    #       if [ ! -f "${file}" ]; then
+    #         echo "${file} not found in the root directory, cannot copy"
+    #       else
+    #         if [ ! -f "${DIRECTORY}/${file}" ]; then
+    #           echo "${file} not found in ${DIRECTORY}, copying from root"
+    #           cp "${file}" "${DIRECTORY}/"
+    #         fi
+    #       fi
+    #     done
 
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
