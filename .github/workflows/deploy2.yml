@@ -41,6 +41,13 @@ jobs:
       run: |
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
+    
+    - name: Output REPO
+      run: echo "::set-output name=repo_value::${{ steps.downcase.outputs.lowercase }}"
+      id: output-repo-value
+
+    outputs:
+      repo_value: ${{ steps.output-repo-value.outputs.repo_value }}
 
   build-and-deploy-matrix:
     runs-on: 'ubuntu-latest'
@@ -57,21 +64,24 @@ jobs:
       with:
         fetch-depth: 0
 
-    # - name: 🧰 Check and copy necessary files
-    #   run: |
-    #     DIRECTORY=${{ matrix.directory }}
-    #     REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-    #     cd $GITHUB_WORKSPACE
-    #     for file in "${REQUIRED_FILES[@]}"; do
-    #       if [ ! -f "${file}" ]; then
-    #         echo "${file} not found in the root directory, cannot copy"
-    #       else
-    #         if [ ! -f "${DIRECTORY}/${file}" ]; then
-    #           echo "${file} not found in ${DIRECTORY}, copying from root"
-    #           cp "${file}" "${DIRECTORY}/"
-    #         fi
-    #       fi
-    #     done
+    - name: Set REPO value
+      run: echo "REPO_VALUE=${{ needs.prepare-and-deploy-once.outputs.repo_value }}" >> $GITHUB_ENV
+
+    - name: 🧰 Check and copy necessary files
+      run: |
+        DIRECTORY=${{ matrix.directory }}
+        REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
+        cd $GITHUB_WORKSPACE
+        for file in "${REQUIRED_FILES[@]}"; do
+          if [ ! -f "${file}" ]; then
+            echo "${file} not found in the root directory, cannot copy"
+          else
+            if [ ! -f "${DIRECTORY}/${file}" ]; then
+              echo "${file} not found in ${DIRECTORY}, copying from root"
+              cp "${file}" "${DIRECTORY}/"
+            fi
+          fi
+        done
 
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
