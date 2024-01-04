@@ -65,7 +65,7 @@ jobs:
         fetch-depth: 0
 
     - name: Set REPO value
-      run: echo "REPO_VALUE=${{ needs.prepare-and-deploy-once.outputs.repo_value }}" >> $GITHUB_ENV
+      run: echo "REPO=${{ needs.prepare-and-deploy-once.outputs.repo_value }}" >> $GITHUB_ENV
 
     - name: 🧰 Check and copy necessary files
       run: |
