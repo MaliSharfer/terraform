@@ -52,14 +52,14 @@ jobs:
       run: |
         DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-        cd $GITHUB_WORKSPACE
+        cd $GITHUB_WORKSPACE/services/$DIRECTORY
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${file}" ]; then
-            echo "${file} not found in the root directory, cannot copy"
+            echo "${file} not found in the ${DIRECTORY} directory, cannot copy"
           else
-            if [ ! -f "${DIRECTORY}/${file}" ]; then
+            if [ ! -f "${GITHUB_WORKSPACE}/${DIRECTORY}/${file}" ]; then
               echo "${file} not found in ${DIRECTORY}, copying from root"
-              cp "${file}" "${DIRECTORY}/"
+              cp "${file}" "${GITHUB_WORKSPACE}/${DIRECTORY}/"
             fi
           fi
         done
@@ -70,7 +70,7 @@ jobs:
         context: ./${{ matrix.directory }}
         push: true
         tags: ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:latest
-        file: Dockerfile
+        file: ./Dockerfile
 
     # - name: 🔑 Login to Azure
     #   uses: azure/login@v1
