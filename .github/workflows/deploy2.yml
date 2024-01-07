@@ -20,6 +20,13 @@ jobs:
     - name: 🛠️ Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
+    - name: 🔑 Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry:  ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_PAT  }}
+
     - name: 🔄 downcase REPO
       uses: ASzc/change-string-case-action@v1
       id: downcase
@@ -53,13 +60,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: 🔑 Log in to registry
-      uses: docker/login-action@v2
-      with:
-        registry:  ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_PAT  }}.
-
     - name: Set REPO value
       run: echo "REPO=${{ needs.prepare-and-deploy-once.outputs.repo_value }}" >> $GITHUB_ENV
 
@@ -80,8 +80,8 @@ jobs:
         done
     - name : 🔑 az login
       id : az-login
-      run :   az login --use-device-code
-
+      run :  az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+       
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
