@@ -52,9 +52,9 @@ jobs:
       run: |
         DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-        cd $GITHUB_WORKSPACE
+        cd $GITHUB_WORKSPACE/services
         for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "services/${file}" ]; then
+          if [ ! -f "${file}" ]; then
             echo "${file} not found in the root directory, cannot copy"
           else
             if [ ! -f "${DIRECTORY}/${file}" ]; then
