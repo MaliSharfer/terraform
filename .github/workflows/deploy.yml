@@ -7,7 +7,7 @@ env:
   ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
   ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
   ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-  
+
 jobs:
  build-and-deploy:
     runs-on: 'ubuntu-latest'
@@ -19,8 +19,8 @@ jobs:
     strategy:
       matrix:
         directory:
-          - func-plus
-
+          - services/func-plus
+          - services/func-minus
     steps:
     - name: 📂 Checkout repository
       uses: actions/checkout@v4
