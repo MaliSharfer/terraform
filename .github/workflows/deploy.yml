@@ -70,7 +70,7 @@ jobs:
         context: ./${{ matrix.directory }}
         push: true
         tags: ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:latest
-        file: ./Dockerfile
+        file: Dockerfile
 
     # - name: 🔑 Login to Azure
     #   uses: azure/login@v1
@@ -82,8 +82,6 @@ jobs:
       id : az-login
       run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
-
- 
     - name: 🚀 Deploy to Azure Functions
       id: deploy-to-functions
       uses: Azure/functions-container-action@v1
