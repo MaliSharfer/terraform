@@ -80,27 +80,17 @@ jobs:
       run: |
         DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-        ROOT_DIRECTORY=$(pwd)
+        # ROOT_DIRECTORY=$(pwd)
         FILES_PATH="$ROOT_DIRECTORY/services"
-        cd ${FILES_PATH}
-        pwd
-        ls  
+        # cd ${FILES_PATH}
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${FILES_PATH}/${file}" ]; then
             echo "${file} not found in ${FILES_PATH}, cannot copy"
           else
             echo "${file} found in ${FILES_PATH}, copying from there"
-            echo "${FILES_PATH}/${file}"
-            echo "${DIRECTORY}/"
             cp "${FILES_PATH}/${file}" "${ROOT_DIRECTORY}/${DIRECTORY}/"
           fi
         done
-    - name: print 
-      run : |
-        DIRECTORY=${{ matrix.directory }}
-        ROOT_DIRECTORY=$(pwd)
-        cd ${ROOT_DIRECTORY}/${DIRECTORY}/
-        ls
 
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
@@ -119,7 +109,7 @@ jobs:
     - name : 🔑 az login
       id : az-login
       run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
-      
+
     - name: Extract last directory level
       run: |
         LAST_LEVEL=$(basename ${{ matrix.directory }})
