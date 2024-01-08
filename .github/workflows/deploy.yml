@@ -83,6 +83,7 @@ jobs:
         ROOT_DIRECTORY=$(pwd)
         FILES_PATH="$ROOT_DIRECTORY/services"
         cd ${FILES_PATH}
+        pwd
         ls  
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${FILES_PATH}" ]; then
