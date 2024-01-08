@@ -1,7 +1,12 @@
 name: 🚀 Build and deploy container app to Azure Function App 
 
+# on:
+#   workflow_dispatch:
+
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
 env:
   ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
   ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
@@ -55,7 +60,7 @@ jobs:
         run: |
           DIRECTORY=${{ matrix.directory }}
           REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-          FILES_PATH="${file}/services"
+          FILES_PATH="${$GITHUB_WORKSPACE}/services"
           cd $GITHUB_WORKSPACE
           echo "${FILES_PATH}"
           for file in "${REQUIRED_FILES[@]}"; do
