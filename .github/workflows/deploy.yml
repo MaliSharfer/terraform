@@ -19,8 +19,8 @@ jobs:
     strategy:
       matrix:
         directory:
-          - func-plus
-          - func-minus
+          - services/func-plus
+          - services/func-minus
     steps:
     - name: 📂 Checkout repository
       uses: actions/checkout@v4
@@ -48,11 +48,13 @@ jobs:
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
 
+    - name: Navigate to the target directory
+      run: cd services 
+
     - name: 🧰 Check and copy necessary files
       run: |
         DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-        cd $GITHUB_WORKSPACE/services
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${file}" ]; then
             echo "${file} not found in the root directory, cannot copy"
@@ -67,7 +69,7 @@ jobs:
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        context: ./services/${{ matrix.directory }}
+        context: ./${{ matrix.directory }}
         push: true
         tags: ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:latest
         file: ./Dockerfile
