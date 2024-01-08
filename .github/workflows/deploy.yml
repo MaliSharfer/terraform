@@ -124,6 +124,6 @@ jobs:
       id: deploy-to-functions
       uses: Azure/functions-container-action@v1
       with:
-        app-name: ${{ matrix.directory }}
-        image: 'ghcr.io/${{ env.REPO }}-${{ matrix.directory }}:latest'
+        app-name: ${{ steps.get-last-level.outputs.last_level }}
+        image: 'ghcr.io/${{ env.REPO }}-${{ steps.get-last-level.outputs.last_level }}:latest'
 # 
