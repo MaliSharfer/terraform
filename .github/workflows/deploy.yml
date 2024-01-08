@@ -62,6 +62,7 @@ jobs:
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
         cd $GITHUB_WORKSPACE
         ROOT_DIRECTORY=$(pwd)
+        ROOT_DIRECTORY=$ROOT_DIRECTORY/services
         echo "Root directory is: $ROOT_DIRECTORY"
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${file}" ]; then
