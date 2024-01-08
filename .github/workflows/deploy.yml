@@ -58,7 +58,7 @@ jobs:
         cd services 
         ROOT_DIRECTORY=$(pwd)
         echo "Root directory is: $ROOT_DIRECTORY" 
-
+        ls 
     - name: 🧰 Check and copy necessary files
       run: |
         DIRECTORY=${{ matrix.directory }}
