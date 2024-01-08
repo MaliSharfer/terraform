@@ -19,8 +19,8 @@ jobs:
     strategy:
       matrix:
         directory:
-          - services/func-plus
-          - services/func-minus
+          - services/emails/func-plus
+          - services/emails/func-minus
     steps:
     - name: 📂 Checkout repository
       uses: actions/checkout@v4
@@ -56,6 +56,7 @@ jobs:
         DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
         FILES_PATH= $GITHUB_WORKSPACE/services  
+        echo "${FILES_PATH}/${DIRECTORY}/"
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${FILES_PATH}/${DIRECTORY}/${file}" ]; then
             echo "${file} not found in ${FILES_PATH}/${DIRECTORY}, cannot copy"
