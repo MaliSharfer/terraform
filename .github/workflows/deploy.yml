@@ -119,6 +119,13 @@ jobs:
     - name : 🔑 az login
       id : az-login
       run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+      
+    - name: Extract last directory level
+      run: |
+        LAST_LEVEL=$(basename ${{ matrix.directory }})
+        echo "Last directory level: $LAST_LEVEL"
+        echo "::set-output name=last_level::$LAST_LEVEL"
+      id: get-last-level
 
     - name: 🚀 Deploy to Azure Functions
       id: deploy-to-functions
