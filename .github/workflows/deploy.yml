@@ -85,7 +85,7 @@ jobs:
         FILES_PATH="$ROOT_DIRECTORY/services"
         ls  
         for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "${FILES_PATH}/${DIRECTORY}/${file}" ]; then
+          if [ ! -f "${FILES_PATH}" ]; then
             echo "${file} not found in ${FILES_PATH}/${DIRECTORY}, cannot copy"
           else
             echo "${file} found in ${FILES_PATH}/${DIRECTORY}, copying from there"
