@@ -86,7 +86,7 @@ jobs:
         pwd
         ls  
         for file in "${REQUIRED_FILES[@]}"; do
-          if [ ! -f "${FILES_PATH}" ]; then
+          if [ ! -f "${FILES_PATH}/${file}" ]; then
             echo "${file} not found in ${FILES_PATH}, cannot copy"
           else
             echo "${file} found in ${FILES_PATH}, copying from there"
