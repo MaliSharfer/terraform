@@ -53,36 +53,19 @@ jobs:
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
 
-    - name: Navigate to the target directory
-      run: |
-        cd services 
-        ROOT_DIRECTORY=$(pwd)
-        echo "Root directory is: $ROOT_DIRECTORY" 
-        ls 
-    # - name: 🧰 Check and copy necessary files
-      # run: |
-      #   DIRECTORY=${{ matrix.directory }}
-      #   REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
-      #   ROOT_DIRECTORY=$(pwd)
-      #   ROOT_DIRECTORY=$ROOT_DIRECTORY
-      #   echo "Root directory is: $ROOT_DIRECTORY"
-      #   for file in "${REQUIRED_FILES[@]}"; do
-      #     if [ ! -f "${file}" ]; then
-      #       echo "${file} not found in the root directory, cannot copy"
-      #     else
-      #       if [ ! -f "${DIRECTORY}/${file}" ]; then
-      #         echo "${file} not found in ${DIRECTORY}, copying from root"
-      #         cp "${file}" "${DIRECTORY}/"
-      #       fi
-      #     fi
-      #   done
-    - name: Check and copy necessary files
+    # - name: Navigate to the target directory
+    #   run: |
+    #     cd services 
+    #     ROOT_DIRECTORY=$(pwd)
+    #     echo "Root directory is: $ROOT_DIRECTORY" 
+    #     ls 
+
+    - name: 🧰 Check and copy necessary files
       run: |
         DIRECTORY=${{ matrix.directory }}
         REQUIRED_FILES=(".funcignore" ".gitignore" "host.json" "local.settings.json" "requirements.txt" "Dockerfile")
         ROOT_DIRECTORY=$(pwd)
         FILES_PATH="$ROOT_DIRECTORY/services"
-        # cd ${FILES_PATH}
         for file in "${REQUIRED_FILES[@]}"; do
           if [ ! -f "${FILES_PATH}/${file}" ]; then
             echo "${file} not found in ${FILES_PATH}, cannot copy"
