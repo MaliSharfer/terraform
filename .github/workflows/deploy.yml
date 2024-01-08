@@ -53,8 +53,11 @@ jobs:
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
 
-    # - name: Navigate to the target directory
-    #   run: cd services 
+    - name: Navigate to the target directory
+      run: |
+        cd services 
+        ROOT_DIRECTORY=$(pwd)
+        echo "Root directory is: $ROOT_DIRECTORY" 
 
     - name: 🧰 Check and copy necessary files
       run: |
