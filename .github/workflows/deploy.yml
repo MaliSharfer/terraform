@@ -95,7 +95,13 @@ jobs:
             cp "${FILES_PATH}/${file}" "${ROOT_DIRECTORY}/${DIRECTORY}/"
           fi
         done
-  
+    - name: print 
+      run : |
+        DIRECTORY=${{ matrix.directory }}
+        ROOT_DIRECTORY=$(pwd)
+        ${ROOT_DIRECTORY}/${DIRECTORY}/
+        ls
+         
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
