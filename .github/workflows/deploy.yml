@@ -19,8 +19,8 @@ jobs:
     strategy:
       matrix:
         directory:
-          - func-plus
-          - func-minus
+          - services/func-plus
+          - services/func-minus
     steps:
     - name: 📂 Checkout repository
       uses: actions/checkout@v4
