@@ -90,7 +90,7 @@ jobs:
             echo "${file} not found in ${FILES_PATH}, cannot copy"
           else
             echo "${file} found in ${FILES_PATH}, copying from there"
-            cp "${FILES_PATH}/${DIRECTORY}/${file}" "${DIRECTORY}/"
+            cp "${FILES_PATH}/${file}" "${DIRECTORY}/"
           fi
         done
   
