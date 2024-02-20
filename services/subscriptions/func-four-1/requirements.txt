@@ -1,10 +1,13 @@
+azure-functions
 azure-cli
 azure-identity
+azure-data-tables
+azure-storage-blob
 azure-mgmt-monitor
 azure-mgmt-consumption
-azure-mgmt-storage
 azure-mgmt-resource 
-azure-storage-blob
+azure-mgmt-storage
+azure-keyvault-secrets
 pytest
 pytest_mock
 black
@@ -12,6 +15,5 @@ python-dateutil
 pytest-cov
 python-dotenv
 pytz
-azure-functions
 requests
 openpyxl
