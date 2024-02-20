@@ -20,7 +20,7 @@ jobs:
           
       - name: ⏬ Install Dependencies
         run: |
-          echo ${pwd}
+          echo $pwd
           python -m pip install --upgrade pip
           pip install -r ./requirements.txt  
         
